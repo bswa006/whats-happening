@@ -1,0 +1,2 @@
+# whats-happening
+Nextjs application
