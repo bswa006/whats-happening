@@ -12,6 +12,16 @@ const nextConfig = {
       },
     ],
   },
+  // Allow connections from all network interfaces for local device testing
+  // Hostname allows access from other devices on the same network
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

@@ -13,6 +13,9 @@
 # production
 /build
 
+# anima code
+/anima-react-code
+
 # misc
 .DS_Store
 *.pem

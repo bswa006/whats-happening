@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#ffa800] text-foreground;
+  }
+  
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('/fonts/PublicSans-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('/fonts/PublicSans-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('/fonts/PublicSans-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Public Sans';
+    src: url('/fonts/PublicSans-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+@layer components {
+  .all-\[unset\] {
+    all: unset;
+  }
+}
+
+:root {
+  /* Base colors from shadcn theme */
+  --background: 38 100% 50%;
+  --foreground: 0 0% 3.9%;
+  --card: 0 0% 98%;
+  --card-foreground: 0 0% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.9%;
+  --primary: 24 93% 54%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
+  --radius: 0.5rem;
+  
+  /* Anima specific color variables */
+  --colors-color-accesspass-bg-default: rgba(255, 255, 255, 1);
+  --colors-color-general-bg-default: rgba(234, 213, 202, 1);
+  --colors-color-general-bg-header: rgba(255, 168, 0, 1);
+  --colors-color-general-bg-subtle: rgba(250, 245, 242, 1);
+  --colors-color-general-bg-subtle2: rgba(255, 255, 255, 1);
+  --colors-color-general-bg-surface1: rgba(252, 224, 36, 1);
+  --colors-color-general-bg-surface2: rgba(252, 88, 36, 1);
+  --colors-color-general-border-default: rgba(0, 0, 0, 1);
+  --colors-color-general-border-thickness-1: 1px;
+  --colors-color-general-border-thickness-2: 2px;
+  --colors-color-general-button-primary-bg: rgba(255, 255, 255, 1);
+  --colors-color-general-button-primary-disabled: rgba(255, 255, 255, 1);
+  --colors-color-general-button-primary-hover: rgba(255, 255, 255, 1);
+  --colors-color-general-button-primary-text: rgba(255, 255, 255, 1);
+  --colors-color-general-card-bg: rgba(250, 245, 242, 1);
+  --colors-color-general-card-text: rgba(18, 18, 18, 1);
+  --colors-color-general-card-textbutton: rgba(0, 122, 255, 1);
+  --colors-color-general-general-icon-default: rgba(18, 18, 18, 1);
+  --colors-color-general-label-default: rgba(255, 255, 255, 1);
+  --colors-color-general-label-defaulttext: rgba(18, 18, 18, 1);
+  --colors-color-general-label-selected: rgba(0, 0, 0, 1);
+  --colors-color-general-label-selectedtext: rgba(255, 255, 255, 1);
+  --colors-color-general-state-active: rgba(255, 255, 255, 1);
+  --colors-color-general-state-disabled: rgba(255, 255, 255, 1);
+  --colors-color-general-state-error: rgba(255, 255, 255, 1);
+  --colors-color-general-state-hover: rgba(255, 255, 255, 1);
+  --colors-color-general-state-success: rgba(255, 255, 255, 1);
+  --colors-color-general-state-warning: rgba(255, 255, 255, 1);
+  --colors-color-general-text-inverse: rgba(255, 255, 255, 1);
+  --colors-color-general-text-primary: rgba(18, 18, 18, 1);
+  --colors-color-general-text-secondary: rgba(255, 255, 255, 1);
+  --colors-spacing-drawer-height: 783px;
+  --colors-text-size-2xl: 24px;
+  --colors-text-size-2xs: 13px;
+  --colors-text-size-3xs: 12px;
+  --colors-text-size-4xs: 11px;
+  --colors-text-size-base: 16px;
+  --colors-text-size-lg: 18px;
+  --colors-text-size-sm: 15px;
+  --colors-text-size-xl: 20px;
+  --colors-text-size-xs: 14px;
+  --general-drawer-shadow: 0px -6px 0px 0px rgba(0, 0, 0, 0.25);
+  --system-colors-backgrounds-primary: rgba(255, 255, 255, 1);
+  --system-colors-labels-primary: rgba(0, 0, 0, 1);
+}
+
+/*
+Theme support for light/dark modes
+*/
+
+[data-system-colors-mode="light"] {
+  --system-colors-backgrounds-primary: rgba(255, 255, 255, 1);
+  --system-colors-labels-primary: rgba(0, 0, 0, 1);
+}
+
+[data-system-colors-mode="dark"] {
+  --system-colors-backgrounds-primary: rgba(0, 0, 0, 1);
+  --system-colors-labels-primary: rgba(255, 255, 255, 1);
+}
+
+[data-system-colors-mode="dark-elevated"] {
+  --system-colors-backgrounds-primary: rgba(28, 28, 30, 1);
+  --system-colors-labels-primary: rgba(255, 255, 255, 1);
+}
+
+.dark {
+  --background: 0 0% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 24 93% 54%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 14.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 14.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  --ring: 0 0% 83.1%;
+} 

@@ -25,6 +25,7 @@ This guide provides a systematic approach to achieving pixel-perfect implementat
 15. [Troubleshooting Common Discrepancies](#15-troubleshooting-common-discrepancies)
 16. [Robust Image Handling Strategies](#16-robust-image-handling-strategies)
 17. [Avoiding Common Implementation Mistakes](#17-avoiding-common-implementation-mistakes)
+18. [Common Implementation Discrepancies: Case Study](#18-common-implementation-discrepancies-case-study)
 
 ---
 
@@ -1604,6 +1605,133 @@ To ensure your implementation matches the Figma design perfectly:
    - Share implementation early and often with designers
    - Use annotation tools to highlight potential issues
    - Establish a clear feedback and revision process
+
+---
+
+## 18. Common Implementation Discrepancies: Case Study
+
+This section presents a real-world case study of common implementation discrepancies found when comparing an implemented event listing feature with its original Figma design.
+
+### Identified Discrepancies
+
+| Element          | Implementation                                                 | Figma Design                         | Impact                                   |
+| ---------------- | -------------------------------------------------------------- | ------------------------------------ | ---------------------------------------- |
+| Card Styling     | Heavy black borders (2px) with black drop shadows (4px offset) | Subtle styling without heavy borders | Visual heaviness, less modern appearance |
+| Background Color | #EAD5CA (light beige/pink)                                     | White background                     | Different visual theme                   |
+| Price Indicators | Large price tags with tag icons                                | Subtle price indicators              | Takes focus away from content            |
+| Card Spacing     | Significant gaps between cards (29px)                          | Tighter spacing in grid layout       | Less efficient use of space              |
+| Action Buttons   | Black borders and shadows on share/bookmark buttons            | Subtle, integrated action buttons    | Distracting from main content            |
+| Card Variety     | Same card design repeated                                      | Varied card designs and layouts      | Less visual interest                     |
+| Navigation       | Missing bottom navigation                                      | Complete navigation system           | Incomplete user experience               |
+
+### Recommendations for Addressing Discrepancies
+
+1. **Precise Shadow Extraction:**
+
+   ```jsx
+   // Incorrect implementation
+   <div className="shadow-[4px_4px_0px_0px_rgba(0,0,0,0.45)]">
+     {/* Card content */}
+   </div>
+
+   // Correct implementation (using exact Figma values)
+   <div className="shadow-[0px_2px_4px_rgba(0,0,0,0.1)]">
+     {/* Card content */}
+   </div>
+   ```
+
+2. **Border Weight Correction:**
+
+   ```jsx
+   // Incorrect implementation
+   <div className="border-[2px] border-black">
+     {/* Card content */}
+   </div>
+
+   // Correct implementation (using exact Figma values)
+   <div className="border border-[#E5E7EB]">
+     {/* Card content */}
+   </div>
+   ```
+
+3. **Component Verification Process:**
+
+   - Create direct screenshots of both the implementation and Figma design
+   - Place them side by side with a grid overlay
+   - Identify all visible discrepancies
+   - Address each discrepancy individually with exact values from Figma
+
+4. **Missing Components Checklist:**
+
+   - [ ] Identify all UI components present in the Figma design
+   - [ ] Verify each component is implemented
+   - [ ] Check for different card variants and layouts
+   - [ ] Ensure navigation elements are complete
+   - [ ] Verify presence of all interactive elements
+
+5. **Layout Structure Verification:**
+
+   ```jsx
+   // Correct card grid implementation matching Figma
+   <div className="grid grid-cols-2 gap-3">
+     {/* Card components with correct styling */}
+   </div>
+   ```
+
+6. **Visual Reference Implementation:**
+   - During development, implement a toggle for overlay comparison:
+   ```jsx
+   {
+     process.env.NODE_ENV === "development" && (
+       <button
+         className="fixed bottom-4 right-4 z-50 bg-blue-500 text-white p-2 rounded"
+         onClick={() => setShowOverlay(!showOverlay)}
+       >
+         Toggle Design Overlay
+       </button>
+     );
+   }
+   {
+     showOverlay && (
+       <div className="pointer-events-none fixed inset-0 z-40">
+         <img
+           src="/design-references/events-page.png"
+           className="w-full h-full opacity-50"
+           alt="Design reference"
+         />
+       </div>
+     );
+   }
+   ```
+
+### Prevention Strategy for Future Implementations
+
+1. **Component Documentation with Screenshots:**
+
+   - Create a detailed component documentation with screenshots from Figma
+   - Include exact measurements, colors, and interaction states
+   - Document border, shadow, and spacing values explicitly
+
+2. **Design Systems Integration:**
+
+   - Create shared design tokens that match Figma exactly
+   - Implement component libraries that enforce design consistency
+   - Use design system tools to sync Figma designs with code
+
+3. **Implementation Checklist:**
+
+   - [ ] Extract exact color values using Figma's color picker tool
+   - [ ] Measure exact spacing with Figma's inspection tools
+   - [ ] Document shadow parameters (x/y offset, blur, spread, color)
+   - [ ] Verify border thickness and colors
+   - [ ] Test layout on multiple device sizes
+
+4. **Regular Design Reviews:**
+   - Schedule regular design reviews with designers
+   - Use overlay comparison techniques during reviews
+   - Document and address all discrepancies
+
+By following these recommendations, future implementations will more accurately represent the Figma designs, resulting in a more polished and professional user experience.
 
 ---
 
